@@ -1,19 +1,19 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Router from "./routes/Router";
+import axios from "axios";
+import { AuthContextProvider } from "./context/AuthContext";
 
 import "./App.css";
 
-import PostList from "./components/PostList";
-import Post from "./components/Post";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/posts/:id" component={Post} />
-        <Route path="/posts" component={PostList} />
-      </Switch>
-    </BrowserRouter>
+    <AuthContextProvider>
+      <div className="App">
+        <Router />
+      </div>
+    </AuthContextProvider>
   );
 }
 

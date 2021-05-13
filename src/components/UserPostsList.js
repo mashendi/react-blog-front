@@ -3,20 +3,22 @@ import axios from "axios";
 
 import PostListItem from "./PostListItem";
 
-function PostList() {
+function UserPostsList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/posts").then((res) => setPosts(res.data));
+    axios
+      .get(`http://localhost:5000/users${window.location.pathname}`)
+      .then((res) => setPosts(res.data));
   }, []);
 
   return (
     <div className="container mt-5">
       {posts.map((post) => (
-        <PostListItem key={post._id} post={post}/>
+        <PostListItem key={post._id} post={post} />
       ))}
     </div>
   );
 }
 
-export default PostList;
+export default UserPostsList;
